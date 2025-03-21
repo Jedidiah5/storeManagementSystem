@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Order Status - Store Management</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="Images/Logo/logo-removebg-preview.png" alt="Logo" class="dashboard-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="storeDashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#products"><i class="fas fa-box"></i> Products</a>
+                    </li>
+                    <li class="active">
+                        <a href="#orders"><i class="fas fa-shopping-cart"></i> Orders</a>
+                        <ul class="submenu">
+                            <li><a href="viewOrders.html">View Orders</a></li>
+                            <li class="active"><a href="updateOrder.html">Update Status</a></li>
+                            <li><a href="processReturns.html">Process Returns</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#analytics"><i class="fas fa-chart-bar"></i> Analytics</a>
+                    </li>
+                    <li>
+                        <a href="storeSettings.html"><i class="fas fa-cog"></i> Settings</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <h2><i class="fas fa-tasks"></i> Update Order Status</h2>
+                <div class="user-menu">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="profile">
+                        <img src="Images/default-avatar.png" alt="Profile" class="profile-img">
+                        <span class="profile-name">Store Admin</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <!-- Order Search -->
+                <div class="search-section">
+                    <div class="search-container">
+                        <input type="text" id="orderSearch" class="formInput" placeholder="Enter Order ID or Customer Email">
+                        <button class="form_btn primary" onclick="searchOrder()">
+                            <i class="fas fa-search"></i> Find Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Order Details and Status Update Form -->
+                <div id="orderUpdateForm" class="order-update-form" style="display: none;">
+                    <div class="order-info-grid">
+                        <div class="info-card">
+                            <h3>Order Details</h3>
+                            <div id="orderDetails">
+                                <p><strong>Order ID:</strong> <span id="displayOrderId"></span></p>
+                                <p><strong>Date:</strong> <span id="displayOrderDate"></span></p>
+                                <p><strong>Customer:</strong> <span id="displayCustomer"></span></p>
+                                <p><strong>Total Amount:</strong> <span id="displayAmount"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Current Status</h3>
+                            <div class="status-timeline">
+                                <div id="statusTimeline" class="timeline-container">
+                                    <!-- Timeline will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Update Status</h3>
+                            <form id="statusUpdateForm">
+                                <div class="form-group">
+                                    <label for="newStatus">New Status</label>
+                                    <select id="newStatus" class="formInput" required>
+                                        <option value="">Select Status</option>
+                                        <option value="processing">Processing</option>
+                                        <option value="packed">Packed</option>
+                                        <option value="shipped">Shipped</option>
+                                        <option value="delivered">Delivered</option>
+                                        <option value="cancelled">Cancelled</option>
+                                        <option value="returned">Returned</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="trackingNumber">Tracking Number (if shipping)</label>
+                                    <input type="text" id="trackingNumber" class="formInput">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="statusNotes">Notes</label>
+                                    <textarea id="statusNotes" class="formInput" rows="3" placeholder="Add any relevant notes about this status update"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="notifyCustomer">
+                                        Notify customer about this update
+                                    </label>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="submit" class="form_btn primary">Update Status</button>
+                                    <button type="button" class="form_btn secondary" onclick="resetForm()">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Js/updateOrder.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Order Status - Store Management</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="Images/Logo/logo-removebg-preview.png" alt="Logo" class="dashboard-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="storeDashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#products"><i class="fas fa-box"></i> Products</a>
+                    </li>
+                    <li class="active">
+                        <a href="#orders"><i class="fas fa-shopping-cart"></i> Orders</a>
+                        <ul class="submenu">
+                            <li><a href="viewOrders.html">View Orders</a></li>
+                            <li class="active"><a href="updateOrder.html">Update Status</a></li>
+                            <li><a href="processReturns.html">Process Returns</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#analytics"><i class="fas fa-chart-bar"></i> Analytics</a>
+                    </li>
+                    <li>
+                        <a href="storeSettings.html"><i class="fas fa-cog"></i> Settings</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <h2><i class="fas fa-tasks"></i> Update Order Status</h2>
+                <div class="user-menu">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="profile">
+                        <img src="Images/default-avatar.png" alt="Profile" class="profile-img">
+                        <span class="profile-name">Store Admin</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <!-- Order Search -->
+                <div class="search-section">
+                    <div class="search-container">
+                        <input type="text" id="orderSearch" class="formInput" placeholder="Enter Order ID or Customer Email">
+                        <button class="form_btn primary" onclick="searchOrder()">
+                            <i class="fas fa-search"></i> Find Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Order Details and Status Update Form -->
+                <div id="orderUpdateForm" class="order-update-form" style="display: none;">
+                    <div class="order-info-grid">
+                        <div class="info-card">
+                            <h3>Order Details</h3>
+                            <div id="orderDetails">
+                                <p><strong>Order ID:</strong> <span id="displayOrderId"></span></p>
+                                <p><strong>Date:</strong> <span id="displayOrderDate"></span></p>
+                                <p><strong>Customer:</strong> <span id="displayCustomer"></span></p>
+                                <p><strong>Total Amount:</strong> <span id="displayAmount"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Current Status</h3>
+                            <div class="status-timeline">
+                                <div id="statusTimeline" class="timeline-container">
+                                    <!-- Timeline will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Update Status</h3>
+                            <form id="statusUpdateForm">
+                                <div class="form-group">
+                                    <label for="newStatus">New Status</label>
+                                    <select id="newStatus" class="formInput" required>
+                                        <option value="">Select Status</option>
+                                        <option value="processing">Processing</option>
+                                        <option value="packed">Packed</option>
+                                        <option value="shipped">Shipped</option>
+                                        <option value="delivered">Delivered</option>
+                                        <option value="cancelled">Cancelled</option>
+                                        <option value="returned">Returned</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="trackingNumber">Tracking Number (if shipping)</label>
+                                    <input type="text" id="trackingNumber" class="formInput">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="statusNotes">Notes</label>
+                                    <textarea id="statusNotes" class="formInput" rows="3" placeholder="Add any relevant notes about this status update"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="notifyCustomer">
+                                        Notify customer about this update
+                                    </label>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="submit" class="form_btn primary">Update Status</button>
+                                    <button type="button" class="form_btn secondary" onclick="resetForm()">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Js/updateOrder.js"></script>
+</body>
+</html>

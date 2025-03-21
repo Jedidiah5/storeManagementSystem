@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product - Store Management</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar (Same as dashboard) -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="Images/Logo/logo-removebg-preview.png" alt="Logo" class="dashboard-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="storeDashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <a href="#products"><i class="fas fa-box"></i> Products</a>
+                        <ul class="submenu">
+                            <li><a href="addProduct.html">Add Product</a></li>
+                            <li class="active"><a href="updateProduct.html">Update Product</a></li>
+                            <li><a href="manageProduct.html">Manage Products</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#orders"><i class="fas fa-shopping-cart"></i> Orders</a>
+                    </li>
+                    <li>
+                        <a href="#analytics"><i class="fas fa-chart-bar"></i> Analytics</a>
+                    </li>
+                    <li>
+                        <a href="storeSettings.html"><i class="fas fa-cog"></i> Settings</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <h2><i class="fas fa-edit"></i> Update Product</h2>
+                <div class="user-menu">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="profile">
+                        <img src="Images/default-avatar.png" alt="Profile" class="profile-img">
+                        <span class="profile-name">Store Admin</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <!-- Product Search Section -->
+                <div class="search-section">
+                    <div class="search-container">
+                        <input type="text" id="productSearch" class="formInput" placeholder="Search product by name or SKU...">
+                        <button class="form_btn primary" onclick="searchProduct()">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Update Form -->
+                <form id="updateProductForm" class="product-form" style="display: none;">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="productName">Product Name*</label>
+                            <input type="text" id="productName" class="formInput" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productCategory">Category*</label>
+                            <select id="productCategory" class="formInput" required>
+                                <option value="">Select Category</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="clothing">Clothing</option>
+                                <option value="food">Food & Beverages</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productPrice">Price*</label>
+                            <input type="number" id="productPrice" class="formInput" min="0" step="0.01" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productStock">Stock Quantity*</label>
+                            <input type="number" id="productStock" class="formInput" min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productSKU">SKU</label>
+                            <input type="text" id="productSKU" class="formInput" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productStatus">Status</label>
+                            <select id="productStatus" class="formInput">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="outOfStock">Out of Stock</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="productDescription">Description*</label>
+                        <textarea id="productDescription" class="formInput" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Current Images</label>
+                        <div id="currentImages" class="image-preview"></div>
+                        
+                        <label for="productImages">Add New Images</label>
+                        <div class="image-upload-container">
+                            <input type="file" id="productImages" class="formInput" accept="image/*" multiple>
+                            <div id="imagePreview" class="image-preview"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="form_btn primary">Update Product</button>
+                        <button type="button" class="form_btn secondary" onclick="window.location.href='manageProduct.html'">Cancel</button>
+                        <button type="button" class="form_btn danger" onclick="confirmDelete()">Delete Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="Js/updateProduct.js"></script>
+</body>
+</html>

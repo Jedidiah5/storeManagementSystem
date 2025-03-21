@@ -1,0 +1,158 @@
+<!-- salesReport.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Report - Store Management</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="Images/Logo/logo-removebg-preview.png" alt="Logo" class="dashboard-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="storeDashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#products"><i class="fas fa-box"></i> Products</a>
+                        <ul class="submenu">
+                            <li><a href="addProduct.html">Add Product</a></li>
+                            <li><a href="updateProduct.html">Update Product</a></li>
+                            <li><a href="manageProducts.html">Manage Products</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#orders"><i class="fas fa-shopping-cart"></i> Orders</a>
+                        <ul class="submenu">
+                            <li><a href="viewOrders.html">View Orders</a></li>
+                            <li><a href="updateOrder.html">Update Status</a></li>
+                            <li><a href="processReturns.html">Process Returns</a></li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="#analytics"><i class="fas fa-chart-bar"></i> Analytics</a>
+                        <ul class="submenu">
+                            <li class="active"><a href="salesReport.html">Sales Report</a></li>
+                            <li><a href="customerInsights.html">Customer Insights</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="storeSettings.html"><i class="fas fa-cog"></i> Settings</a>
+                    </li>
+                    <li>
+                        <a href="staffManagement.html"><i class="fas fa-users"></i> Staff</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <h2><i class="fas fa-chart-line"></i> Sales Report</h2>
+                <div class="user-menu">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="profile">
+                        <img src="Images/default-avatar.png" alt="Profile" class="profile-img">
+                        <span class="profile-name">Store Admin</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <!-- Date Range Filter -->
+                <div class="filter-section">
+                    <div class="date-range">
+                        <input type="date" id="startDate" class="formInput">
+                        <span>to</span>
+                        <input type="date" id="endDate" class="formInput">
+                        <button class="form_btn primary" onclick="generateReport()">
+                            Generate Report
+                        </button>
+                    </div>
+                    <div class="export-buttons">
+                        <button class="form_btn secondary" onclick="exportReport('pdf')">
+                            <i class="fas fa-file-pdf"></i> Export PDF
+                        </button>
+                        <button class="form_btn secondary" onclick="exportReport('excel')">
+                            <i class="fas fa-file-excel"></i> Export Excel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sales Overview -->
+                <div class="report-grid">
+                    <div class="stat-card">
+                        <h3>Total Sales</h3>
+                        <p class="stat-value">$<span id="totalSales">0.00</span></p>
+                        <p class="stat-change positive">+15% vs last period</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Orders</h3>
+                        <p class="stat-value"><span id="totalOrders">0</span></p>
+                        <p class="stat-change positive">+8% vs last period</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Average Order Value</h3>
+                        <p class="stat-value">$<span id="avgOrderValue">0.00</span></p>
+                        <p class="stat-change positive">+5% vs last period</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Return Rate</h3>
+                        <p class="stat-value"><span id="returnRate">0</span>%</p>
+                        <p class="stat-change negative">+2% vs last period</p>
+                    </div>
+                </div>
+
+                <!-- Sales Charts -->
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h3>Sales Trend</h3>
+                        <canvas id="salesTrendChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Top Products</h3>
+                        <canvas id="topProductsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Detailed Sales Table -->
+                <div class="table-section">
+                    <h3>Sales Details</h3>
+                    <div class="table-responsive">
+                        <table class="table" id="salesTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Products</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Js/salesReport.js"></script>
+</body>
+</html>

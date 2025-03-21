@@ -1,0 +1,192 @@
+<!-- staffManagement.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management - Store Management</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="Images/Logo/logo-removebg-preview.png" alt="Logo" class="dashboard-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="storeDashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#products"><i class="fas fa-box"></i> Products</a>
+                        <ul class="submenu">
+                            <li><a href="addProduct.html">Add Product</a></li>
+                            <li><a href="updateProduct.html">Update Product</a></li>
+                            <li><a href="manageProducts.html">Manage Products</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#orders"><i class="fas fa-shopping-cart"></i> Orders</a>
+                        <ul class="submenu">
+                            <li><a href="viewOrders.html">View Orders</a></li>
+                            <li><a href="updateOrder.html">Update Status</a></li>
+                            <li><a href="processReturns.html">Process Returns</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#analytics"><i class="fas fa-chart-bar"></i> Analytics</a>
+                        <ul class="submenu">
+                            <li><a href="salesReport.html">Sales Report</a></li>
+                            <li><a href="customerInsights.html">Customer Insights</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="storeSettings.html"><i class="fas fa-cog"></i> Settings</a>
+                    </li>
+                    <li class="active">
+                        <a href="staffManagement.html"><i class="fas fa-users"></i> Staff</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <h2><i class="fas fa-users"></i> Staff Management</h2>
+                <div class="user-menu">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="profile">
+                        <img src="Images/default-avatar.png" alt="Profile" class="profile-img">
+                        <span class="profile-name">Store Admin</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <!-- Staff Actions -->
+                <div class="staff-actions">
+                    <button class="form_btn primary" onclick="openAddStaffModal()">
+                        <i class="fas fa-user-plus"></i> Add New Staff
+                    </button>
+                    <div class="staff-filters">
+                        <select id="roleFilter" class="formInput">
+                            <option value="">All Roles</option>
+                            <option value="admin">Admin</option>
+                            <option value="manager">Manager</option>
+                            <option value="staff">Staff</option>
+                        </select>
+                        <select id="statusFilter" class="formInput">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                        <input type="text" id="searchStaff" class="formInput" placeholder="Search staff...">
+                    </div>
+                </div>
+
+                <!-- Staff List -->
+                <div class="table-responsive">
+                    <table class="table" id="staffTable">
+                        <thead>
+                            <tr>
+                                <th>Staff Member</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>Last Active</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Staff Modal -->
+    <div id="staffModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New Staff</h3>
+                <span class="close" onclick="closeStaffModal()">&times;</span>
+            </div>
+            <form id="staffForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="staffName">Full Name</label>
+                        <input type="text" id="staffName" class="formInput" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staffEmail">Email</label>
+                        <input type="email" id="staffEmail" class="formInput" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staffRole">Role</label>
+                        <select id="staffRole" class="formInput" required>
+                            <option value="">Select Role</option>
+                            <option value="admin">Admin</option>
+                            <option value="manager">Manager</option>
+                            <option value="staff">Staff</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="staffDepartment">Department</label>
+                        <select id="staffDepartment" class="formInput" required>
+                            <option value="">Select Department</option>
+                            <option value="sales">Sales</option>
+                            <option value="inventory">Inventory</option>
+                            <option value="customer_service">Customer Service</option>
+                            <option value="shipping">Shipping</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="staffPhone">Phone</label>
+                        <input type="tel" id="staffPhone" class="formInput">
+                    </div>
+                    <div class="form-group">
+                        <label for="staffStatus">Status</label>
+                        <select id="staffStatus" class="formInput" required>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="staffPermissions">Permissions</label>
+                    <div class="permissions-grid">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="permissions" value="manage_products"> Manage Products
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="permissions" value="manage_orders"> Manage Orders
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="permissions" value="view_reports"> View Reports
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="permissions" value="manage_staff"> Manage Staff
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="form_btn secondary" onclick="closeStaffModal()">Cancel</button>
+                    <button type="submit" class="form_btn primary">Save Staff</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="Js/staffManagement.js"></script>
+</body>
+</html>

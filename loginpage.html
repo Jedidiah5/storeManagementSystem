@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="CSS/style.css" />
 </head>
-<link rel="stylesheet" href="CSS/style.css">
 <body>
-  <!--                  Form Inputs                  -->
-  <div>
-    <container class="form" >
-      <form action="">
-        <p>Name:</p>
-        <input class="formInput" type="text" placeholder="Enter your full name">
-        <br>
-        <div>
-          <p>Email:</p>
-          <input class="formInput" type="email" placeholder="Enter your eamil">
-          <br>
-        </div>
-        <div>
-          <p>Phone Number:</p>
-          <input class="formInput" type="number" placeholder="Enter your phone number">
-          <br>
-        </div>
-      </form>
-      <div>
-        <button class="form_btn">Submit</button>
-        <button class="form_btn">Sign Up</button>
+  <div class="form-container">
+    <div class="loginFormContainer">
+      <div class="logoFormContainer">
+        <img src="Images/Logo/logo-removebg-preview.png" alt="" class="logoForm">
+        <form id="loginForm">
+          <h2>Welcome</h2>
+          <p>Please enter your details to login or sign up if you don't have an existing account</p>
       </div>
-      <br>
-    </container>
+
+      <label for="email">Email:</label>
+      <input id="email" class="formInput" type="email" placeholder="Enter your email" required />
+
+      <label for="password">Password:</label>
+      <input id="password" class="formInput" type="password" placeholder="Enter your password" required />
+      <div id="passwordError" class="error-message"></div>
+      
+      <div class="password-toggle">
+        <input type="checkbox" id="showPassword" onclick="togglePassword()" />
+        <label for="showPassword">Show Password</label>
+      </div>
+
+      <div class="button-group">
+        <button class="form_btn" type="submit">Login</button>
+        <button class="form_btn" type="button" onclick="window.location.href='signup.html'">Sign Up</button>
+      </div>
+    </form>
+    </div>
   </div>
-  <!--                  Form Inputs Ending                -->
+  <script src="Js/login.js"></script>
 </body>
 </html>

@@ -1,36 +1,210 @@
-body{
-  text-align: center;
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #0d0d0d;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
   min-height: 100vh;
+  padding: 2rem 0;
+}
+
+/* Form Container */
+.form-container {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Create store Container */
+.createStorecontainer {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/*Logo on the form*/
+.logoForm{
+  height: 70px;
+  width: 90px;
+}
+
+.logoFormContainer{
   justify-content: center;
   align-items: center;
+  margin-top: -5rem;
+  margin-bottom: 4rem;
 }
 
+.loginFormContainer{
+  align-items: center;
+  padding-top: 8rem;
+  padding-bottom: -2rem;
+}
 
-.formInput{
-  border-radius: 5px;
-  width: 20%;
+/* Form Headings */
+h2 {
+  font-size: 1.8rem;
+  color: #00aaff;
+  margin-bottom: 1rem;
+}
+
+/* Labels */
+label {
+  display: block;
+  text-align: left;
+  font-size: 0.9rem;
+  margin: 0.5rem 0 0.2rem;
+}
+
+/* Inputs */
+.formInput {
+  width: 100%;
   padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid;
-}
-.form_btn{
-  margin-top: 15px;
+  font-size: 1rem;
+  background-color: #262626;
+  border: 1px solid #333;
   color: white;
-  background-color: rgb(24, 122, 213);
   border-radius: 5px;
-  border: 1px;
-  font-size: 13px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 5px;
-  padding-left: 5px;
+  outline: none;
+  transition: 0.3s;
 }
 
-form{
-  border: 1px;
+.formInput:focus {
+  border-color: #00aaff;
+  box-shadow: 0 0 8px rgba(0, 170, 255, 0.5);
 }
 
-p{
-  text-align: center;
+/* Select2 Customization */
+.select2-container--default .select2-selection--single {
+  background-color: #262626 !important;
+  border: 1px solid #333 !important;
+  border-radius: 5px !important;
+  color: white !important;
+  height: 38px !important;
+  padding: 5px !important;
 }
 
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: white !important;
+  line-height: 28px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 36px !important;
+}
+
+.select2-dropdown {
+  background-color: #262626 !important;
+  border: 1px solid #333 !important;
+  color: white !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: #00aaff !important;
+  color: white !important;
+}
+
+.select2-container--default .select2-results__option {
+  color: white !important;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+  background-color: #333 !important;
+}
+
+.select2-search__field {
+  background-color: #262626 !important;
+  color: white !important;
+  border: 1px solid #333 !important;
+  border-radius: 5px !important;
+}
+
+/* Textarea */
+textarea.formInput {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Password Toggle */
+.password-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.password-toggle input {
+  margin-right: 0.5rem;
+  accent-color: #00aaff;
+}
+
+/* Button Styles */
+.button-group {
+  margin-top: 1.5rem;
+}
+
+.form_btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+}
+
+.form_btn:first-child {
+  background-color: #00aaff;
+  color: white;
+}
+
+.form_btn:first-child:hover {
+  background-color: #0088cc;
+}
+
+.form_btn:last-child {
+  background-color: #333;
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.form_btn:last-child:hover {
+  background-color: #444;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+  .form-container {
+    width: 90%;
+  }
+}

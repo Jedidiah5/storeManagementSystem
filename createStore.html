@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Store</title>
+  <link rel="stylesheet" href="CSS/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="createStorecontainer">
+    <div class="logoFormContainer">
+      <img src="Images/Logo/logo-removebg-preview.png" alt="" class="logoForm">
+      <form id="createStoreForm">
+        <h2>Create Your Store</h2>
+        <p>Fill in your store details to get started</p>
+    </div>
+
+    <div class="form-section">
+      <label for="storeName">Store Name:</label>
+      <input id="storeName" class="formInput" type="text" placeholder="Enter your store name" required />
+      
+      <label for="businessType">Business Type:</label>
+      <select id="businessType" class="formInput select2" required>
+        <option value="">Select business type</option>
+        <option value="retail">Retail Store</option>
+        <option value="wholesale">Wholesale</option>
+        <option value="service">Service Business</option>
+        <option value="restaurant">Restaurant</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="storeDescription">Store Description:</label>
+      <textarea id="storeDescription" class="formInput" placeholder="Describe your store (max 500 characters)" maxlength="500" required></textarea>
+      
+      <label for="address">Store Address:</label>
+      <input id="address" class="formInput" type="text" placeholder="Enter your store address" required />
+      
+      <label for="storeEmail">Store Email:</label>
+      <input id="storeEmail" class="formInput" type="email" placeholder="Enter your store email" required />
+
+      <label for="phoneNumber">Phone Number:</label>
+      <input id="phoneNumber" class="formInput" type="tel" placeholder="Enter store phone number" required />
+
+      <label for="currency">Store Currency:</label>
+      <select id="currency" class="formInput select2" required>
+        <option value="">Select currency</option>
+        <option value="USD">USD ($)</option>
+        <option value="EUR">EUR (€)</option>
+        <option value="GBP">GBP (£)</option>
+        <option value="NGN">NGN (₦)</option>
+      </select>
+
+      <label for="timezone">Store Timezone:</label>
+      <select id="timezone" class="formInput select2" required>
+        <option value="">Select timezone</option>
+        <option value="GMT">GMT (Greenwich Mean Time)</option>
+        <option value="WAT">WAT (West African Time)</option>
+        <option value="EST">EST (Eastern Standard Time)</option>
+        <!-- Add more timezone options as needed -->
+      </select>
+
+      <label for="documents">Business Verification Documents:</label>
+      <div class="file-upload-container">
+        <input type="file" id="documents" class="formInput" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple required />
+        <p class="file-help">Upload registration certificate, business permit, or other verification documents (PDF, DOC, or images)</p>
+      </div>
+
+      <div class="button-group">
+        <button class="form_btn" type="submit" onclick="createStore(event)">Create Store</button>
+        <button class="form_btn" type="button" onclick="window.location.href='loginpage.html'">Cancel</button>
+      </div>
+    </div>
+    </form>
+  </div>
+
+  <!-- Add jQuery and Select2 JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="Js/createStore.js"></script>
+</body>
+</html>
